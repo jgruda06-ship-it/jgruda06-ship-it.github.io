@@ -3906,6 +3906,18 @@ input, select, textarea {
 		background-image: linear-gradient(180deg, rgba(210, 191, 166, 0.25), rgba(232, 220, 203, 0.9));
 	}
 
+	/* Tablet/phone: section headers use template teal; align with warm desktop palette */
+	@media screen and (max-width: 1152px) {
+		#wrapper > section > header {
+			background-color: #e8dccb;
+			background-image: linear-gradient(180deg, rgba(210, 191, 166, 0.35), rgba(232, 220, 203, 0.95));
+		}
+	}
+
+	body.is-mobile #wrapper > section > header {
+		background-attachment: scroll;
+	}
+
 	#wrapper > section > header:before,
 	#wrapper > section > header h1:before,
 	#wrapper > section > header h2:before,
@@ -3952,6 +3964,39 @@ input, select, textarea {
 			.button.primary:hover {
 				background-color: #a88763;
 			}
+
+		input[type="submit"]:active,
+		input[type="reset"]:active,
+		input[type="button"]:active,
+		button:active,
+		.button:active {
+			background-color: rgba(184, 157, 125, 0.2);
+			box-shadow: inset 0 0 0 2px #b89d7d;
+			color: #6f5237 !important;
+		}
+
+		input[type="text"]:focus,
+		input[type="password"]:focus,
+		input[type="email"]:focus,
+		input[type="tel"]:focus,
+		input[type="search"]:focus,
+		input[type="url"]:focus,
+		select:focus,
+		textarea:focus {
+			border-color: #b89d7d;
+		}
+
+		input[type="checkbox"]:checked + label:before,
+		input[type="radio"]:checked + label:before {
+			background-color: #b89d7d;
+			border-color: #b89d7d;
+		}
+
+		input[type="checkbox"]:focus + label:before,
+		input[type="radio"]:focus + label:before {
+			border-color: #b89d7d;
+			box-shadow: 0 0 0 1px #b89d7d;
+		}
 
 /* Hamburger menu */
 
