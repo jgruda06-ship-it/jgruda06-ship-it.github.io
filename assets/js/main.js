@@ -93,6 +93,13 @@
 
 				$status.removeClass('error success');
 
+				// Honeypot: boty wypełniają ukryte pole. Udajemy sukces i nic nie wysyłamy.
+					if ($.trim($('#contact-hp').val()) !== '') {
+						$contactForm[0].reset();
+						$status.addClass('success').text('Dziękuję! Wiadomość została wysłana.');
+						return;
+					}
+
 				if (!name || !email || !message) {
 					$status.addClass('error').text('Uzupełnij wszystkie pola formularza.');
 					return;
@@ -100,6 +107,11 @@
 
 				if (!emailRegex.test(email)) {
 					$status.addClass('error').text('Podaj poprawny adres e-mail.');
+					return;
+				}
+
+				if (!$('#contact-consent').is(':checked')) {
+					$status.addClass('error').text('Zaznacz zgodę na przetwarzanie danych, aby wysłać wiadomość.');
 					return;
 				}
 
@@ -158,127 +170,6 @@
 			});
 		}
 
-	// Google reviews: show top 3 best rated.
-		var $googleReviews = $('#google-reviews');
-
-		function escapeHtml(value) {
-			return String(value)
-				.replace(/&/g, '&amp;')
-				.replace(/</g, '&lt;')
-				.replace(/>/g, '&gt;')
-				.replace(/"/g, '&quot;')
-				.replace(/'/g, '&#39;');
-		}
-
-		function renderReviewsStatus(message) {
-			if ($googleReviews.length === 0)
-				return;
-
-			$googleReviews.html('<p class="reviews-status">' + escapeHtml(message) + '</p>');
-		}
-
-		async function loadGoogleReviews() {
-			if ($googleReviews.length === 0)
-				return;
-
-		var siteConfig = window.SITE_CONFIG || {},
-				reviewsConfig = siteConfig.googleReviews || {},
-				apiKey = $.trim(reviewsConfig.apiKey || ''),
-			placeId = $.trim(reviewsConfig.placeId || ''),
-			query = $.trim(reviewsConfig.query || '');
-
-		if (!apiKey) {
-			renderReviewsStatus('Ustaw SITE_CONFIG.googleReviews.apiKey, aby pobierać opinie z Google.');
-				return;
-			}
-
-			renderReviewsStatus('Ładowanie opinii Google...');
-
-			try {
-			if (!placeId && query) {
-				var searchResponse = await fetch('https://places.googleapis.com/v1/places:searchText', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						'X-Goog-Api-Key': apiKey,
-						'X-Goog-FieldMask': 'places.id'
-					},
-					body: JSON.stringify({
-						textQuery: query,
-						languageCode: 'pl'
-					})
-				});
-
-				if (!searchResponse.ok)
-					throw new Error('SEARCH_HTTP ' + searchResponse.status);
-
-				var searchData = await searchResponse.json();
-
-				if (searchData.places && searchData.places.length > 0 && searchData.places[0].id)
-					placeId = searchData.places[0].id;
-			}
-
-			if (!placeId) {
-				renderReviewsStatus('Nie znaleziono Place ID. Uzupełnij placeId ręcznie lub doprecyzuj query w SITE_CONFIG.');
-				return;
-			}
-
-			var endpoint = 'https://places.googleapis.com/v1/places/' + encodeURIComponent(placeId) + '?languageCode=pl',
-					response = await fetch(endpoint, {
-						headers: {
-							'X-Goog-Api-Key': apiKey,
-							'X-Goog-FieldMask': 'displayName,reviews'
-						}
-					});
-
-				if (!response.ok)
-					throw new Error('HTTP ' + response.status);
-
-				var data = await response.json(),
-					reviews = Array.isArray(data.reviews) ? data.reviews : [];
-
-				reviews = reviews
-					.filter(function(review) {
-						return review && typeof review.rating === 'number' && review.text && review.text.text;
-					})
-					.sort(function(a, b) {
-						var ratingDiff = b.rating - a.rating;
-
-						if (ratingDiff !== 0)
-							return ratingDiff;
-
-						var dateA = Date.parse(a.publishTime || '') || 0,
-							dateB = Date.parse(b.publishTime || '') || 0;
-
-						return dateB - dateA;
-					})
-					.slice(0, 3);
-
-				if (reviews.length === 0) {
-					renderReviewsStatus('Brak dostępnych opinii do wyświetlenia.');
-					return;
-				}
-
-				var reviewsHtml = reviews.map(function(review) {
-					var author = review.authorAttribution && review.authorAttribution.displayName ? review.authorAttribution.displayName : 'Klient',
-						ratingStars = '★'.repeat(Math.max(1, Math.min(5, Math.round(review.rating))));
-
-					return (
-						'<blockquote>' +
-							'<p>"' + escapeHtml(review.text.text) + '"</p>' +
-							'<footer>- ' + escapeHtml(author) + ', ocena: ' + ratingStars + '</footer>' +
-						'</blockquote>'
-					);
-				}).join('');
-
-				$googleReviews.html(reviewsHtml);
-			}
-			catch (error) {
-				renderReviewsStatus('Nie udało się pobrać opinii Google. Sprawdź API key, Place ID i ustawienia domeny klucza.');
-			}
-		}
-
-		loadGoogleReviews();
 
 	// Polyfill: Object fit.
 		if (!browser.canUse('object-fit')) {
