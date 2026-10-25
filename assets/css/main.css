@@ -5,6 +5,51 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+
+/* Fonty hostowane lokalnie (Montserrat, Cormorant Garamond) */
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../fonts/montserrat-v31-latin_latin-ext-regular.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Cormorant Garamond';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../fonts/cormorant-garamond-v21-latin_latin-ext-regular.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('../fonts/montserrat-v31-latin_latin-ext-500.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Cormorant Garamond';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('../fonts/cormorant-garamond-v21-latin_latin-ext-500.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('../fonts/montserrat-v31-latin_latin-ext-600.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Cormorant Garamond';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('../fonts/cormorant-garamond-v21-latin_latin-ext-600.woff2') format('woff2');
+}
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -161,9 +206,9 @@ input, select, textarea {
 
 	body, input, select, textarea {
 		color: #000000;
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-family: "Montserrat", Helvetica, sans-serif;
 		font-size: 1rem;
-		font-weight: 300;
+		font-weight: 400;
 		letter-spacing: 0.0375em;
 		line-height: 2;
 	}
@@ -198,7 +243,7 @@ input, select, textarea {
 
 	h1, h2, h3, h4, h5, h6 {
 		color: #000000;
-		font-family: "Raleway", Helvetica, sans-serif;
+		font-family: "Montserrat", Helvetica, sans-serif;
 		font-weight: 600;
 		letter-spacing: 0.175em;
 		line-height: 1.75;
@@ -212,9 +257,9 @@ input, select, textarea {
 		}
 
 	h1 {
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-family: "Montserrat", Helvetica, sans-serif;
 		font-size: 5rem;
-		font-weight: 700;
+		font-weight: 600;
 		letter-spacing: -0.05em;
 		line-height: 1.1;
 		margin: 0 0 1.5rem 0;
@@ -223,7 +268,7 @@ input, select, textarea {
 
 	h2 {
 		font-size: 1.25rem;
-		font-weight: 800;
+		font-weight: 600;
 		margin: 0 0 2rem 0;
 	}
 
@@ -1863,7 +1908,7 @@ input, select, textarea {
 		color: #000000 !important;
 		cursor: pointer;
 		display: inline-block;
-		font-family: "Raleway", Helvetica, sans-serif;
+		font-family: "Montserrat", Helvetica, sans-serif;
 		font-size: 0.6rem;
 		font-weight: 600;
 		height: 3rem;
@@ -2139,7 +2184,7 @@ input, select, textarea {
 	label {
 		color: #000000;
 		display: block;
-		font-family: "Raleway", Helvetica, sans-serif;
+		font-family: "Montserrat", Helvetica, sans-serif;
 		font-size: 0.75rem;
 		font-weight: 600;
 		letter-spacing: 0.175em;
@@ -2204,9 +2249,9 @@ input, select, textarea {
 			color: #000000;
 			cursor: pointer;
 			display: inline-block;
-			font-family: "Source Sans Pro", Helvetica, sans-serif;
+			font-family: "Montserrat", Helvetica, sans-serif;
 			font-size: 1rem;
-			font-weight: 300;
+			font-weight: 400;
 			letter-spacing: 0.0375em;
 			padding-left: 2.675rem;
 			padding-right: 0.875rem;
@@ -3258,7 +3303,7 @@ input, select, textarea {
 				}
 
 				#wrapper section > header h1 + p {
-					font-family: "Raleway", Helvetica, sans-serif;
+					font-family: "Montserrat", Helvetica, sans-serif;
 					font-size: 0.8rem;
 					letter-spacing: 0.175em;
 					line-height: 2.5;
@@ -4300,8 +4345,8 @@ input, select, textarea {
 
 	.nav-brand {
 		border-bottom: 0;
-		font-family: "Raleway", Helvetica, sans-serif;
-		font-weight: 800;
+		font-family: "Montserrat", Helvetica, sans-serif;
+		font-weight: 600;
 		font-size: 0.8rem;
 		letter-spacing: 0.15em;
 		text-transform: uppercase;
@@ -4356,7 +4401,7 @@ input, select, textarea {
 				color: #ffffff;
 			}
 
-	@media screen and (max-width: 1100px) {
+	@media screen and (max-width: 1200px) {
 
 		#top-nav {
 			padding: 0 1rem;
@@ -4812,4 +4857,157 @@ input, select, textarea {
 	.image.main img {
 		height: auto;
 		max-width: 100%;
+	}
+
+/* ==========================================================================
+   Typografia: Cormorant Garamond (nagłówki) + Montserrat (tekst)
+   Dostępne wagi: 400, 500, 600 (bez kursywy)
+   ========================================================================== */
+
+	body, input, select, textarea {
+		font-family: "Montserrat", Helvetica, Arial, sans-serif;
+		font-weight: 400;
+		font-size: 0.95rem;
+		letter-spacing: 0.01em;
+		line-height: 1.9;
+	}
+
+	strong, b {
+		font-weight: 600;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+		font-weight: 600;
+	}
+
+	h1 {
+		font-size: 5.5rem;
+		letter-spacing: -0.01em;
+		line-height: 1.02;
+	}
+
+	#wrapper > section > header h2 {
+		font-size: 1.9rem;
+		letter-spacing: 0.14em;
+		line-height: 1.4;
+	}
+
+	h3 {
+		font-size: 1.4rem;
+		letter-spacing: 0.02em;
+		line-height: 1.35;
+		text-transform: none;
+	}
+
+	label, .button, button, input[type="submit"], input[type="reset"], input[type="button"],
+	#site-menu a, .filter-btn, ul.actions li > a.button {
+		font-family: "Montserrat", Helvetica, Arial, sans-serif;
+		font-weight: 600;
+	}
+
+	#wrapper section > header p, #wrapper > section.intro > header p {
+		font-family: "Montserrat", Helvetica, Arial, sans-serif;
+		font-weight: 500;
+		font-size: 0.8rem;
+		letter-spacing: 0.14em;
+		line-height: 2.1;
+	}
+
+	.nav-brand {
+		font-family: "Cormorant Garamond", Georgia, serif;
+		font-weight: 600;
+		font-size: 1.3rem;
+		letter-spacing: 0.1em;
+	}
+
+	#kontakt footer h3 {
+		font-family: "Montserrat", Helvetica, Arial, sans-serif;
+		font-size: 0.78rem;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+	}
+
+	#contact-form h3 {
+		font-size: 1.5rem;
+	}
+
+	#contact-form label {
+		font-size: 0.7rem;
+	}
+
+	.offer-grid h3,
+	.steps h3 {
+		font-size: 1.45rem;
+		letter-spacing: 0.02em;
+		text-transform: none;
+		line-height: 1.3;
+	}
+
+	.offer-grid .price {
+		display: block;
+		margin: 0 0 0.7rem 0;
+		font-size: 0.78rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #8c6f4f;
+	}
+
+	.offer-grid p {
+		font-size: 0.9rem;
+		line-height: 1.8;
+	}
+
+	.offer-note {
+		margin: 0 0 2rem 0;
+		padding: 1rem 1.25rem;
+		border-left: 0.3rem solid rgba(140, 111, 79, 0.5);
+		background: rgba(255, 252, 248, 0.7);
+		border-radius: 0.3rem;
+	}
+
+	#oferta p.intro strong {
+		color: #5c4129;
+	}
+
+	.testimonial p,
+	.testimonials blockquote {
+		font-style: normal;
+		font-size: 0.95rem;
+	}
+
+	.testimonial .author {
+		font-weight: 600;
+	}
+
+	ul.feature-icons li {
+		font-weight: 600;
+		font-size: 0.9rem;
+	}
+
+	.legal h1 {
+		font-size: 3.2rem;
+		letter-spacing: 0;
+	}
+
+	.legal h2 {
+		font-size: 1.6rem;
+		letter-spacing: 0.04em;
+		text-transform: none;
+	}
+
+	@media screen and (max-width: 1280px) {
+		h1 { font-size: 4.6rem; }
+	}
+
+	@media screen and (max-width: 736px) {
+		h1 { font-size: 3.6rem; }
+		#wrapper > section > header h2 { font-size: 1.6rem; }
+		body, input, select, textarea { font-size: 0.92rem; }
+	}
+
+	h1, h2, h3, h4, h5, h6, .nav-brand {
+		font-variant-numeric: lining-nums;
+		font-feature-settings: "lnum" 1;
 	}
