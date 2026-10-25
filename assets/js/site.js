@@ -86,6 +86,30 @@
 			});
 		}
 
+
+		var BANNER_CSS =
+			'.cookie-banner{position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:2147483000;max-width:46rem;margin:0 auto;padding:1.1rem 1.25rem;' +
+			'display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1.25rem;background:#fffcf8;border:1px solid #8c6f4f;border-radius:.5rem;' +
+			'box-shadow:0 .6rem 2rem rgba(70,55,40,.35);color:#3f342c;font-family:"Source Sans Pro",Helvetica,Arial,sans-serif;font-size:1rem;box-sizing:border-box}' +
+			'.cookie-banner *{box-sizing:border-box}' +
+			'.cookie-banner p{flex:1 1 18rem;margin:0;font-size:.95rem;line-height:1.6;letter-spacing:.02em;color:#3f342c}' +
+			'.cookie-banner a{color:#5c4129;text-decoration:underline;border-bottom:0}' +
+			'.cookie-actions{display:flex;gap:.6rem}' +
+			'.cookie-actions button{height:2.75rem;line-height:1;padding:0 1.25rem;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;' +
+			'border-radius:.3rem;cursor:pointer;font-family:inherit;border:2px solid #8c6f4f;background:#fffcf8;color:#5c4129}' +
+			'.cookie-actions .cookie-accept{background:#8c6f4f;color:#fff}' +
+			'.cookie-actions button:hover{background:#6f5237;color:#fff;border-color:#6f5237}';
+
+		function injectBannerStyle() {
+			if (document.getElementById('cookie-banner-style'))
+				return;
+
+			var style = document.createElement('style');
+			style.id = 'cookie-banner-style';
+			style.appendChild(document.createTextNode(BANNER_CSS));
+			document.head.appendChild(style);
+		}
+
 		function closeBanner() {
 			if (banner && banner.parentNode)
 				banner.parentNode.removeChild(banner);
@@ -106,6 +130,8 @@
 		function showBanner() {
 			if (banner)
 				return;
+
+			injectBannerStyle();
 
 			banner = document.createElement('div');
 			banner.className = 'cookie-banner';
