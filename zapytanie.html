@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+	<head>
+		<title>Zapytanie o termin i wycenę | Jakub Gruda Fotografia</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Zapytaj o termin i wycenę reportażu lub sesji zdjęciowej: chrzciny, komunie, śluby, urodziny i sesje rodzinne. Odpowiem najszybciej, jak to możliwe.">
+		<meta name="robots" content="index, follow">
+		<meta name="theme-color" content="#f7f2ea">
+		<link rel="canonical" href="https://jakubgruda.pl/zapytanie.html" />
+		<link rel="icon" href="/favicon.ico" sizes="any">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="preload" href="assets/fonts/montserrat-v31-latin_latin-ext-regular.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="assets/fonts/cormorant-garamond-v21-latin_latin-ext-600.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="stylesheet" href="assets/css/main.css?v=20261028a" />
+	</head>
+	<body data-ga="G-2ZGBB4DCTP">
+
+		<div id="top-nav">
+			<a class="nav-brand" href="/">Jakub Gruda Fotografia</a>
+			<nav id="site-menu" aria-label="Menu strony">
+				<a href="/">Strona główna</a>
+				<a href="tel:+48510231146" class="nav-phone">+48 510 231 146</a>
+			</nav>
+		</div>
+
+		<main class="legal">
+			<h1>Zapytanie o termin i wycenę</h1>
+			<p>
+				Napisz, jaką uroczystość lub sesję planujesz, a sprawdzę dostępność terminu i przygotuję propozycję dopasowaną do Twoich potrzeb.
+				Odpowiadam najszybciej, jak to możliwe. Wolisz porozmawiać? Zadzwoń: <a href="tel:+48510231146">+48 510 231 146</a>.
+			</p>
+
+			<form id="contact-form" novalidate>
+				<div class="fields">
+					<div class="field half">
+						<label for="contact-name">Imię i nazwisko</label>
+						<input type="text" name="name" id="contact-name" placeholder="Np. Anna Kowalska" autocomplete="name" required />
+					</div>
+					<div class="field half">
+						<label for="contact-email">E-mail</label>
+						<input type="email" name="email" id="contact-email" placeholder="twoj@email.pl" autocomplete="email" required />
+					</div>
+					<div class="field half">
+						<label for="contact-phone">Telefon (opcjonalnie)</label>
+						<input type="tel" name="phone" id="contact-phone" placeholder="Np. 500 100 200" autocomplete="tel" />
+					</div>
+					<div class="field half">
+						<label for="contact-type">Rodzaj uroczystości lub sesji</label>
+						<select name="type" id="contact-type">
+							<option value="">Wybierz z listy</option>
+							<option>Chrzciny</option>
+							<option>Komunia</option>
+							<option>Ślub i wesele</option>
+							<option>Urodziny lub impreza okolicznościowa</option>
+							<option>Sesja rodzinna lub noworodkowa</option>
+							<option>Inne</option>
+						</select>
+					</div>
+					<div class="field half">
+						<label for="contact-date">Planowany termin</label>
+						<input type="text" name="date" id="contact-date" placeholder="Np. 14 czerwca 2027" />
+					</div>
+					<div class="field half">
+						<label for="contact-place">Miejscowość</label>
+						<input type="text" name="place" id="contact-place" placeholder="Np. Siedlce" />
+					</div>
+					<div class="field">
+						<label for="contact-message">Wiadomość</label>
+						<textarea name="message" id="contact-message" rows="5" placeholder="Napisz kilka słów o uroczystości i swoich oczekiwaniach." required></textarea>
+					</div>
+					<div class="field hp-field" aria-hidden="true">
+						<label for="contact-hp">Nie wypełniaj tego pola</label>
+						<input type="text" name="_honeypot" id="contact-hp" tabindex="-1" autocomplete="off" />
+					</div>
+					<div class="field consent-field">
+						<input type="checkbox" id="contact-consent" name="consent" required />
+						<label for="contact-consent">Przesyłam dane w celu odpowiedzi na wiadomość. Zapoznałem(-am) się z <a href="polityka-prywatnosci.html" target="_blank" rel="noopener">Polityką prywatności</a>.</label>
+					</div>
+				</div>
+				<p id="contact-form-status" class="form-status" aria-live="polite"></p>
+				<ul class="actions">
+					<li><button type="submit" class="primary">Wyślij wiadomość</button></li>
+				</ul>
+			</form>
+
+			<p><a href="/">&larr; Wróć do strony głównej</a></p>
+		</main>
+
+		<script src="assets/js/site.js?v=20261028a"></script>
+	</body>
+</html>
