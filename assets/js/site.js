@@ -31,6 +31,105 @@
 			});
 		});
 
+	// Formularz kontaktowy (strona główna i strona „Zapytanie”). Po wysłaniu przenosi na stronę z podziękowaniem.
+		var contactForm = document.getElementById('contact-form'),
+			statusBox = document.getElementById('contact-form-status'),
+			THANKS_URL = 'dziekuje.html';
+
+		function val(id) {
+			var el = document.getElementById(id);
+			return el ? el.value.trim() : '';
+		}
+
+		function showStatus(type, text) {
+			if (!statusBox)
+				return;
+
+			statusBox.className = 'form-status' + (type ? ' ' + type : '');
+			statusBox.setAttribute('role', type === 'error' ? 'alert' : 'status');
+			statusBox.textContent = text;
+
+			if (type && statusBox.scrollIntoView)
+				statusBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
+
+		if (contactForm) {
+			contactForm.addEventListener('submit', function(event) {
+				event.preventDefault();
+
+				var name = val('contact-name'),
+					email = val('contact-email'),
+					message = val('contact-message'),
+					emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+					consent = document.getElementById('contact-consent'),
+					submitButton = contactForm.querySelector('button[type="submit"]');
+
+				showStatus('', '');
+
+				// Honeypot: boty wypełniają ukryte pole. Udajemy sukces i nic nie wysyłamy.
+					if (val('contact-hp') !== '') {
+						window.location.href = THANKS_URL;
+						return;
+					}
+
+				if (!name || !email || !message) {
+					showStatus('error', 'Uzupełnij wszystkie wymagane pola formularza.');
+					return;
+				}
+
+				if (!emailRegex.test(email)) {
+					showStatus('error', 'Podaj poprawny adres e-mail.');
+					return;
+				}
+
+				if (!consent || !consent.checked) {
+					showStatus('error', 'Zaznacz zgodę na przetwarzanie danych, aby wysłać wiadomość.');
+					return;
+				}
+
+				var payload = {
+					name: name,
+					email: email,
+					message: message,
+					_subject: 'Zapytanie ze strony - ' + name,
+					_template: 'table',
+					_captcha: 'false'
+				};
+
+				[['contact-phone', 'telefon'], ['contact-type', 'rodzaj uroczystości'], ['contact-date', 'termin'], ['contact-place', 'miejsce']].forEach(function(pair) {
+					var v = val(pair[0]);
+
+					if (v)
+						payload[pair[1]] = v;
+				});
+
+				submitButton.disabled = true;
+				submitButton.textContent = 'Wysyłanie...';
+				showStatus('pending', 'Wysyłanie wiadomości...');
+
+				fetch('https://formsubmit.co/ajax/kontakt@jakubgruda.pl', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+					body: JSON.stringify(payload)
+				})
+					.then(function(response) {
+						return response.json().catch(function() { return {}; }).then(function(data) {
+							// FormSubmit potrafi odpowiedzieć HTTP 200 z success:"false" (np. adres nieaktywowany).
+							if (!response.ok || data.success === false || data.success === 'false')
+								throw new Error('send failed');
+						});
+					})
+					.then(function() {
+						window.location.href = THANKS_URL;
+					})
+					.catch(function() {
+						showStatus('error', 'Nie udało się wysłać wiadomości. Spróbuj ponownie lub napisz na kontakt@jakubgruda.pl albo zadzwoń: +48 510 231 146.');
+						submitButton.disabled = false;
+						submitButton.textContent = 'Wyślij wiadomość';
+					});
+			});
+		}
+
 	// Zgoda na cookies i Google Analytics (ładowany dopiero po zgodzie).
 		var STORAGE_KEY = 'cookie-consent',
 			gaId = document.body.getAttribute('data-ga'),
@@ -68,6 +167,9 @@
 			window.gtag = function() { window.dataLayer.push(arguments); };
 			window.gtag('js', new Date());
 			window.gtag('config', gaId);
+
+			if (document.body.getAttribute('data-lead') === '1')
+				window.gtag('event', 'generate_lead', { form_name: 'zapytanie' });
 		}
 
 		function removeAnalyticsCookies() {
