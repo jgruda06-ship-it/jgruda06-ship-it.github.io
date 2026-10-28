@@ -5011,3 +5011,20 @@ input, select, textarea {
 		font-variant-numeric: lining-nums;
 		font-feature-settings: "lnum" 1;
 	}
+
+
+/* Komunikat po wysłaniu formularza: wyraźny, nie znika sam */
+	.form-status:empty { display: none; }
+	.form-status { min-height: 0; }
+	.form-status.error,
+	.form-status.success {
+		display: block;
+		padding: 0.9rem 1.1rem;
+		border-radius: 0.4rem;
+		border: 1px solid;
+		font-size: 1rem;
+		line-height: 1.55;
+		font-weight: 500;
+	}
+	.form-status.success { background: #eef6ee; border-color: #4d6f50; color: #2f4d32; }
+	.form-status.error { background: #fbeeec; border-color: #8b3d33; color: #7a2f26; }

@@ -79,8 +79,18 @@
 
 	// Contact form validation and sending.
 		var $contactForm = $('#contact-form'),
-			$status = $('#contact-form-status'),
-			formStatusTimer = null;
+			$status = $('#contact-form-status');
+
+		function showStatus(type, text) {
+			$status
+				.removeClass('error success')
+				.addClass(type)
+				.attr('role', type === 'error' ? 'alert' : 'status')
+				.text(text);
+
+			if ($status[0] && $status[0].scrollIntoView)
+				$status[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
 
 		if ($contactForm.length > 0) {
 			$contactForm.on('submit', function(event) {
@@ -91,39 +101,34 @@
 					message = $.trim($('#contact-message').val()),
 					emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-				$status.removeClass('error success');
+				$status.removeClass('error success').text('');
 
 				// Honeypot: boty wypełniają ukryte pole. Udajemy sukces i nic nie wysyłamy.
 					if ($.trim($('#contact-hp').val()) !== '') {
 						$contactForm[0].reset();
-						$status.addClass('success').text('Dziękuję! Wiadomość została wysłana.');
+						showStatus('success', 'Dziękuję! Wiadomość została wysłana.');
 						return;
 					}
 
 				if (!name || !email || !message) {
-					$status.addClass('error').text('Uzupełnij wszystkie pola formularza.');
+					showStatus('error', 'Uzupełnij wszystkie pola formularza.');
 					return;
 				}
 
 				if (!emailRegex.test(email)) {
-					$status.addClass('error').text('Podaj poprawny adres e-mail.');
+					showStatus('error', 'Podaj poprawny adres e-mail.');
 					return;
 				}
 
 				if (!$('#contact-consent').is(':checked')) {
-					$status.addClass('error').text('Zaznacz zgodę na przetwarzanie danych, aby wysłać wiadomość.');
+					showStatus('error', 'Zaznacz zgodę na przetwarzanie danych, aby wysłać wiadomość.');
 					return;
 				}
 
 				var $submitButton = $contactForm.find('button[type="submit"]');
 
-				if (formStatusTimer) {
-					clearTimeout(formStatusTimer);
-					formStatusTimer = null;
-				}
-
 				$submitButton.prop('disabled', true).text('Wysyłanie...');
-				$status.text('Wysyłanie wiadomości...');
+				$status.addClass('pending').text('Wysyłanie wiadomości...');
 
 				fetch('https://formsubmit.co/ajax/kontakt@jakubgruda.pl', {
 					method: 'POST',
@@ -141,30 +146,21 @@
 					})
 				})
 					.then(function(response) {
-						if (!response.ok)
-							throw new Error('HTTP ' + response.status);
-
-						return response.json();
+						return response.json().catch(function() { return {}; }).then(function(data) {
+							// FormSubmit potrafi odpowiedzieć HTTP 200 z success:"false" (np. adres nieaktywowany).
+							if (!response.ok || data.success === false || data.success === 'false')
+								throw new Error('send failed');
+						});
 					})
 					.then(function() {
 						$contactForm[0].reset();
-						$status
-							.removeClass('error')
-							.addClass('success')
-							.text('Dziękuję! Wiadomość została wysłana. Odpowiem najszybciej, jak to możliwe.');
-
-						formStatusTimer = setTimeout(function() {
-							$status.removeClass('success error').text('');
-							formStatusTimer = null;
-						}, 9000);
+						showStatus('success', 'Dziękuję! Wiadomość została wysłana. Odpowiem najszybciej, jak to możliwe.');
 					})
 					.catch(function() {
-						$status
-							.removeClass('success')
-							.addClass('error')
-							.text('Nie udało się wysłać wiadomości. Spróbuj ponownie lub napisz na kontakt@jakubgruda.pl.');
+						showStatus('error', 'Nie udało się wysłać wiadomości. Spróbuj ponownie lub napisz na kontakt@jakubgruda.pl albo zadzwoń: +48 510 231 146.');
 					})
 					.finally(function() {
+						$status.removeClass('pending');
 						$submitButton.prop('disabled', false).text('Wyślij wiadomość');
 					});
 			});
