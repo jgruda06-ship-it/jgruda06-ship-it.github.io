@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url>
-    <loc>https://jakubgruda.pl/</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://jakubgruda.pl/zapytanie.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://jakubgruda.pl/polityka-prywatnosci.html</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
+  <url><loc>https://jakubgruda.pl/</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://jakubgruda.pl/chrzty/</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://jakubgruda.pl/komunie/</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://jakubgruda.pl/sesje/</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://jakubgruda.pl/sport/</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://jakubgruda.pl/sluby/</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://jakubgruda.pl/imprezy/</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://jakubgruda.pl/historie/</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://jakubgruda.pl/historie/chrzest/</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://jakubgruda.pl/o-mnie/</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://jakubgruda.pl/kontakt/</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://jakubgruda.pl/polityka-prywatnosci.html</loc><lastmod>2026-11-02</lastmod></url>
 </urlset>
