@@ -5,7 +5,7 @@
 @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url('../fonts/cormorant-garamond-v21-latin_latin-ext-500.woff2') format('woff2')}
 @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;font-display:swap;src:url('../fonts/cormorant-garamond-v21-latin_latin-ext-600.woff2') format('woff2')}
 
-:root{--bg:#f7f2ea;--card:#fffcf8;--ink:#3f342c;--muted:#6e5f52;--accent:#8c6f4f;--accent-d:#6f5237;--deep:#5c4129;--line:#e4d9ca;--serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;--sans:'Montserrat',Helvetica,Arial,sans-serif;--hdr:4.75rem}
+:root{--bg:#f7f2ea;--card:#fffcf8;--ink:#3f342c;--muted:#6e5f52;--accent:#8c6f4f;--accent-d:#6f5237;--deep:#5c4129;--line:#e4d9ca;--serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;--sans:'Montserrat',Helvetica,Arial,sans-serif;--hdr:4.75rem;color-scheme:only light}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.75 var(--sans)}
